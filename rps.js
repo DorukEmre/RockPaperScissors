@@ -4,69 +4,68 @@
 function computerPlay() {
     let computerInt = Math.floor(Math.random() * 3);
     if (computerInt === 0) {
-        return "rock";
+        return "Rock";
     } else if (computerInt === 1) {
-        return "paper";
+        return "Paper";
     }
-        return "scissors";
+        return "Scissors";
 }
 
-// document.getElementById("computerSelection").innerHTML = computerSelection; 
+let playerScore = 0;
+let computerScore = 0;
+let resultSentence = 0;
 
-let playerToken = 0;
-let computerToken = 0;
-let playerSelection;
-let computerSelection;
+const buttons = document.querySelectorAll('button');
+const result = document.querySelector('.result');
+const playeraction = document.querySelector('.playerAction');
+const computeraction = document.querySelector('.computerAction');
+const playerscore = document.querySelector('.playerScore');
+const computerscore = document.querySelector('.computerScore');
 
-function playRound() {
-    let playerSelection = window.prompt("Rock, paper, scissors?").toLowerCase();
-    let computerSelection = computerPlay();
-    console.log("Player: "+playerSelection + " - Computer: "+computerSelection);
-    
-    if (playerSelection === "paper" && computerSelection === "rock" ) {
-        playerToken++;
-        return "Paper beats rock. You win!";
-    } else if (playerSelection === "scissors" && computerSelection === "paper" ) {
-        playerToken++;
-        return "Scissors beats paper. You win!";
-    } else if (playerSelection === "rock" && computerSelection === "scissors" ) {
-        playerToken++;
-        return "Rock beats scissors. You win!";
-    } else if (playerSelection === "rock" && computerSelection === "paper" ) {
-        computerToken++;
-        return "Paper beats rock. Computer wins!";
-    } else if (playerSelection === "paper" && computerSelection === "scissors" ) {
-        computerToken++;
-        return "Scissors beats paper. Computer wins!";
-    } else if (playerSelection === "scissors" && computerSelection === "rock" ) {
-        computerToken++;
-        return "Rock beats scissors. Computer wins!";
-    }
-        return "It's a draw.";
-  }
+playerscore.textContent = playerScore;
+computerscore.textContent = computerScore;
 
-function game() {
-    console.log(playRound());
-    console.log("Round 1 score, Player: "+playerToken+". Computer: "+computerToken); 
-    
-    console.log(playRound());
-    console.log("Round 2 score, Player: "+playerToken+". Computer: "+computerToken); 
-    
-    console.log(playRound());
-    console.log("Round 3 score, Player: "+playerToken+". Computer: "+computerToken); 
-    
-    console.log(playRound());
-    console.log("Round 4 score, Player: "+playerToken+". Computer: "+computerToken); 
-    
-    console.log(playRound());
-    if ( playerToken > computerToken ) {
-        return "Player wins the game by " + playerToken + " to " + computerToken +"!";
-    } else if ( playerToken < computerToken ) {
-        return "Computer wins the game by " + computerToken + " to " + playerToken +"!";
+function playRound(playerSelection, computerSelection) {
+    playeraction.textContent = playerSelection;
+    computeraction.textContent = computerSelection;
+
+    if ((playerSelection === "Paper" && computerSelection === "Rock" ) ||
+    (playerSelection === "Scissors" && computerSelection === "Paper" ) ||
+    (playerSelection === "Rock" && computerSelection === "Scissors" )) {
+        playerScore += 1;
+        playerscore.textContent = playerScore;
+        if  (playerScore === 5 ) {
+            for (var i = 0; i < buttons.length; i++) { 
+                buttons[i].disabled = true;
+            }
+            return result.textContent = `You have 5 points and win the game!`;
+        }
+        return result.textContent = `${playerSelection} beats ${computerSelection.toLowerCase()}. You win this round!`;
+        
+    } else if ((playerSelection === "Rock" && computerSelection === "Paper" ) ||
+    (playerSelection === "Paper" && computerSelection === "Scissors" ) ||
+    (playerSelection === "Scissors" && computerSelection === "Rock" )) {
+        computerScore++;
+        computerscore.textContent = computerScore;
+        if  (computerScore === 5 ) {
+            for (var i = 0; i < buttons.length; i++) { 
+                buttons[i].disabled = true;
+            }
+            return result.textContent = `The Computer has 5 points and wins the game!`;
+        }
+        return result.textContent = `${computerSelection} beats ${playerSelection.toLowerCase()}. Computer wins this round!`;
+        
     } 
-        return "The final score is a draw! " + computerToken + " to " + playerToken;
+    return result.textContent = "This round is a draw.";
+    
 }
 
 
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        playRound(button.className, computerPlay());
+    });
+});
 
-console.log(game(playerSelection, computerSelection));
+
+

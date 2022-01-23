@@ -1,0 +1,43 @@
+body {
+    background: darkslategrey;
+    color: floralwhite;
+}
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.buttons {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    max-width: 180px;
+    margin-left: 4px;
+    margin-bottom: 4px;
+}
+
+button {
+    max-width: 100px;
+}
+
+.playerArea, .computerArea {
+    flex: 1;
+	border: 2px solid black;
+    max-width: 250px;
+    min-width: 200px;
+    min-height: 100px;
+    margin-left: 4px;
+    margin-bottom: 4px
+}
+
+.playerAction, .computerAction{
+    text-align: center;
+}
+
+p {
+    margin-left: 4px;
+    font-size: 18px;
+}

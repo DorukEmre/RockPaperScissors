@@ -1,32 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Page Title</title>
   <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="rps.js" defer></script> 
+  <link rel="stylesheet" href="styles.css">
+  <title>RPS</title>
 </head>
 <body>
-  <script src="rps.js"></script> 
-
-  <p>Rock, paper, scissors in the console</p>
-
-<!--
-
-  <p>Choose an action:</p>
-
-  <form>
-    <input type="radio" id="Rock" name="user_action" value="Rock">
-    <label for="Rock">Rock</label><br>
-    <input type="radio" id="Paper" name="user_action" value="Paper">
-    <label for="Paper">Paper</label><br>
-    <input type="radio" id="Scissors" name="user_action" value="Scissors">
-    <label for="Scissors">Scissors</label>
-  </form> 
-  <button>Play!</button>
-
-  <p>Computer plays <strong id="computerSelection"></strong>.</p>
-  <p><id="result"></p>
-
--->
-
+  <h1>Rock, paper, scissors</h1>
+  
+  <section class="main">
+    <section class="buttons">
+      <p>Choose an action to start:</p>
+      <button class="Rock">
+        Rock
+      </button>
+      <button class="Paper">
+        Paper
+      </button>
+      <button class="Scissors">
+        Scissors
+      </button>    
+    </section>
+    <section class="playerArea">
+      <p>Player score: <span class="playerScore"></span></p>
+      <section class="playerAction">
+      </section>
+    </section>
+    <section class="computerArea">
+      <p>Computer score: <span class="computerScore"></span></p>
+      <section class="computerAction">
+      </section>
+    </section>
+  </section>  
+  <section class="result">    
+  </section>
 </body>
 </html>
